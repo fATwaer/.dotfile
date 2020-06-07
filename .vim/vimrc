@@ -1,0 +1,152 @@
+""""""""""""""""""""""""""""""""""""""
+""          GUI settings            ""
+""""""""""""""""""""""""""""""""""""""
+colorscheme industry
+set number
+" vi compatiable
+set nocompatible
+set cursorline
+highlight Cursor guifg=white guibg=white
+highlight iCursor guifg=white guibg=steelblue
+set guicursor=n-v-c:block-Cursor
+set guicursor+=i:ver100-iCursor
+set guicursor+=n-v-c:blinkon0
+set guicursor+=i:blinkwait10
+
+" screen
+""""""""""""""""""""""""""""""""""""""
+""          wrap line               ""
+""""""""""""""""""""""""""""""""""""""
+set nowrap
+set sidescroll=10
+set showcmd
+set whichwrap=h,l,b,s,<,>,[,]
+" Display command lines tab complete options as a menu.
+set wildmenu
+set scrolloff=7
+
+" for view tabs
+set list
+set listchars=tab:>-,trail:-
+
+""""""""""""""""""""""""""""""""""""""
+""          folding                 ""
+""""""""""""""""""""""""""""""""""""""
+" zo: open cursor line fold
+" zc: close cursor line fold
+" zO: open all nested folds
+" zC: close all
+set foldmethod=indent
+set foldnestmax=3
+
+""""""""""""""""""""""""""""""""""""""
+""          key mapping             ""
+""""""""""""""""""""""""""""""""""""""
+let mapleader=" "
+map s <nop>
+map S :w<CR>
+map Q :q<CR>
+map R :source $MYVIMRC<CR>
+
+" pane splite
+map sr :set splitright<CR> :vsplit<CR>
+map sl :set nosplitright<CR> :split<CR>
+map su :set nosplitbelow<CR> :split<CR>
+map sd :set nosplitbelow<CR> :split<CR>
+
+map <LEADER> <C-w>
+map <C-n> :NERDTreeToggle<CR>
+set pastetoggle=<F12>
+
+" easy-align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
+
+" highlight search
+set showmatch
+set hlsearch
+exec "nohlsearch"
+set incsearch
+set ignorecase
+set smartcase
+
+" character setting 
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+set encoding=utf-8
+
+" extend
+set tabstop=2
+set expandtab
+set shiftwidth=4
+set mouse=a
+set backspace=indent,eol,start
+filetype off
+syntax on
+set laststatus=2
+set autoread
+set autochdir
+set formatoptions+=j
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+""""""""""""""""""""""""""""""""""""""
+""          backup settings         ""
+""""""""""""""""""""""""""""""""""""""
+set backupdir=~/.cache/vim
+" swap-file
+set dir=~/.cache/vim
+
+""""""""""""""""""""""""""""""""""""""
+""          Vim Plug            ""
+""""""""""""""""""""""""""""""""""""""
+call plug#begin('~/.vim/plugged')
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'morhetz/gruvbox'
+Plug 'connorholyday/vim-snazzy'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+
+" NerdTree
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdtree'
+Plug 'kien/ctrlp.vim'
+
+" NerdTree
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdtree'
+
+" Other visual enhancement
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'itchyny/vim-cursorword'
+" Git
+Plug 'rhysd/conflict-marker.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
+Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug']  }"
+" search
+Plug 'majutsushi/tagbar'
+Plug 'junegunn/limelight.vim'
+
+" align
+Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/goyo.vim'
+call plug#end()
+
+set t_Co=256
+
+" airline fonts setting
+let g:airline_powerline_fonts = 1
+
+" NerdTree settings
+" autocmd vimenter * NERDTree
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
+let g:NERDTreeHidden=1
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+nmap <F8> :TagbarToggle<CR>
+
+
+let g:go_version_warning = 0
