@@ -13,7 +13,7 @@ DIRTOCREATE=($DotfilePath $VimCachePath $VimPlugPath)
 
 # settings files
 target_path=(~/.vim ~/.bashrc)
-origin_path=(.vim bashrc)
+origin_path=(.vim .bashrc)
 
 function dprint {
   if [[ ${DEBUG} -eq 1 ]]
